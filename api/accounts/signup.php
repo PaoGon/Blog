@@ -6,7 +6,7 @@
     header("Access-Control-Max-Age: 3600");
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-    require '../config/Database.php';
+    require __DIR__ . '../config/Database.php';
 
     function msg($success, $status, $message, $extra = []){
         return array_merge([
@@ -39,7 +39,8 @@
         || empty(trim($data->password))
     ){
         $fields = ['fields' => ['name', 'email', 'password']];
-        $returnData = msg(0, 422, 'All fields are required!', $fields);
+        http_response_code(400);
+        $returnData = msg(0,400,'Please Fill in all Required Fields!',$fields);
     }
 
     // IF THERE ARE NO EMPTY FIELDS THEN-
@@ -49,15 +50,18 @@
         $email = trim($data->email);
         $password = trim($data->password);
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
-            $returnData = msg(0, 422, 'Invalid Email Address!');
+            http_response_code(401);
+            $returnData = msg(0,401,'Invalid Email Address!');
         } 
 
         elseif (strlen($password) < 8){
-            $returnData = msg(0, 422, 'Your password must be at least 8 characters long!');
+            http_response_code(401);
+            $returnData = msg(0, 401, 'Your password must be at least 8 characters long!');
         } 
 
         elseif (strlen($name) < 3){
-            $returnData = msg(0, 422, 'Your name must be at least 3 characters long!');
+            http_response_code(401);
+            $returnData = msg(0, 401, 'Your name must be at least 3 characters long!');
         }
 
         else{
@@ -69,7 +73,8 @@
                 $check_email_stmt->execute();
 
                 if ($check_email_stmt->rowCount()) :
-                    $returnData = msg(0, 422, 'This E-mail already in use!');
+                    http_response_code(400);
+                    $returnData = msg(0, 400, 'This E-mail already in use!');
 
                 else :
                     $insert_query = "INSERT INTO users(name, email, password) VALUES(:name,:email,:password)";
@@ -83,10 +88,12 @@
 
                 $insert_stmt->execute();
 
+                http_response_code(201);
                 $returnData = msg(1, 201, 'You have successfully registered.');
 
                 endif;
             } catch (PDOException $e) {
+                http_response_code(500);
                 $returnData = msg(0, 500, $e->getMessage());
             }
         } 
