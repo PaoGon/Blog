@@ -28,8 +28,6 @@
         http_response_code(405);
         $returnData = msg(0, 405, 'Method not allowed!');
     }
-
-
     elseif (
         !isset($data->name)
         || !isset($data->email)
@@ -42,7 +40,6 @@
         http_response_code(400);
         $returnData = msg(0,400,'Please Fill in all Required Fields!',$fields);
     }
-
     // IF THERE ARE NO EMPTY FIELDS THEN-
     else{
 
