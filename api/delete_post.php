@@ -1,7 +1,7 @@
 <?php
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Headers: access");
-    header("Access-Control-Allow-Methods: DELETE");
+    header("Access-Control-Allow-Methods: DELETE OPTIONS");
     header("Content-Type: application/json; charset=UTF-8");
     header("Access-Control-Max-Age: 3600");
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
@@ -28,12 +28,14 @@
     $data = json_decode(file_get_contents("php://input"));
     $returnData = [];
 
-    if ($_SERVER["REQUEST_METHOD"] != "DELETE"){
-        http_response_code(405);
-        $returnData = msg(0, 405, 'Method not allowed!');
+    // For CROSS-ORGIN RESOURCE SHARING(CORS) PREFILIGHT
+    if($_SERVER["REQUEST_METHOD"] == "OPTIONS"){
+        http_response_code(200);
+        exit;
     }
-    // Checks if all the fields is set and filled up
-    else{
+
+    // IF METHOD IS DELETE
+    if ($_SERVER["REQUEST_METHOD"] == "DELETE"){
         try{
             $obj->deletePost();
 
@@ -45,6 +47,11 @@
             $returnData = msg(0, 500, $e->getMessage());
         }
 
+    }
+    // IF METHOD IS NOT DELETE
+    else{
+        http_response_code(405);
+        $returnData = msg(0, 405, 'Method not allowed!');
     }
     echo json_encode($returnData);
 

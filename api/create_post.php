@@ -1,7 +1,7 @@
 <?php
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Headers: access");
-    header("Access-Control-Allow-Methods: POST");
+    header("Access-Control-Allow-Methods: POST, OPTIONS");
     header("Content-Type: application/json; charset=UTF-8");
     header("Access-Control-Max-Age: 3600");
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
@@ -25,37 +25,45 @@
     $data = json_decode(file_get_contents("php://input"));
     $returnData = [];
 
-    if ($_SERVER["REQUEST_METHOD"] != "POST"){
-        http_response_code(405);
-        $returnData = msg(0, 405, 'Method not allowed!');
+    // For CROSS-ORGIN RESOURCE SHARING(CORS) PREFILIGHT
+    if($_SERVER["REQUEST_METHOD"] == "OPTIONS"){
+        http_response_code(200);
+        exit;
     }
-    // Checks if all the fields is set and filled up
-    elseif (
-        !isset($data->user_id)
-        || !isset($data->title)
-        || !isset($data->content)
-        || empty(trim($data->user_id))
-        || empty(trim($data->title))
-        || empty(trim($data->content))
-    ){
-        $fields = ['fields' => ['title', 'content']];
-        http_response_code(400);
-        $returnData = msg(0,400,'Please Fill in all Required Fields!',$fields);
+
+    // IF METHOD IS POST
+    if ($_SERVER["REQUEST_METHOD"] == "POST"){
+        // Checks if all the fields is set and filled up
+        if (
+            !isset($data->user_id)
+            || !isset($data->title)
+            || !isset($data->content)
+            || empty(trim($data->user_id))
+            || empty(trim($data->title))
+            || empty(trim($data->content))
+        ){
+            $fields = ['fields' => ['title', 'content']];
+            http_response_code(400);
+            $returnData = msg(0,400,'Please Fill in all Required Fields!',$fields);
+        }
+        else{
+            try{
+                $obj->user_id = $data->user_id;
+                $obj->title = $data->title;
+                $obj->content = $data->content;
+                $obj->createPost();
+                http_response_code(201);
+                $returnData = msg(1, 201, 'Post succesfuly created');
+            }
+            catch (PDOException $e) {
+                http_response_code(500);
+                $returnData = msg(0, 500, $e->getMessage());
+            }
+        }
     }
     else{
-        try{
-            $obj->user_id = $data->user_id;
-            $obj->title = $data->title;
-            $obj->content = $data->content;
-            $obj->createPost();
-            http_response_code(201);
-            $returnData = msg(1, 201, 'Post succesfuly created');
-        }
-        catch (PDOException $e) {
-            http_response_code(500);
-            $returnData = msg(0, 500, $e->getMessage());
-        }
-
+        http_response_code(405);
+        $returnData = msg(0, 405, 'Method not allowed!');
     }
     echo json_encode($returnData);
 
