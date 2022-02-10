@@ -1,10 +1,11 @@
-import React, { createContext, useState, useEffect } from 'react'
+import React, { createContext, useState, useEffect } from 'react';
 
 
 export const UserContext = createContext();
 
 export const UserContextProvider = ({ children }) => {
     const [user, setUser] = useState(null)
+    const [isAuth, setIsAuth] = useState(false)
     const [wait, setWait] = useState(false)
 
     const checkAuthenticated = async () => {
@@ -19,13 +20,14 @@ export const UserContextProvider = ({ children }) => {
             cache: "no-cache"
         };
 
-        console.log(login_token)
+        console.log(login_token);
 
         if (login_token) {
-            const res = await fetch("http://blog.local/api/get_user", requestOptions)
-            const data = await res.json()
+            const res = await fetch("http://blog.local/api/get_user", requestOptions);
+            const data = await res.json();
             if (data.success && data.user) {
                 setUser(data.user);
+                setIsAuth(true)
                 return;
             }
             setUser(null);
@@ -33,7 +35,7 @@ export const UserContextProvider = ({ children }) => {
     }
 
     const login_user = async (data) => {
-        setWait(true)
+        setWait(true);
 
         const requestOptions = {
             method: "POST",
@@ -50,8 +52,8 @@ export const UserContextProvider = ({ children }) => {
             if (data.success && data.token) {
                 localStorage.setItem('login_token', data.token)
 
-                setWait(false)
-                return { success: 1 }
+                setWait(false);
+                return { success: 1 };
 
             } else {
                 setWait(false);
@@ -67,7 +69,7 @@ export const UserContextProvider = ({ children }) => {
         console.log('logout: ', localStorage.getItem('login_token'))
         localStorage.removeItem('login_token');
         setUser(null);
-        console.log("dd")
+        setIsAuth(false);
         console.log('logout: ', localStorage.getItem('login_token'))
     }
 
@@ -79,7 +81,7 @@ export const UserContextProvider = ({ children }) => {
     }, [wait]);
 
     return (
-        <UserContext.Provider value={{ login_user, logout, wait, user }}>
+        <UserContext.Provider value={{ login_user, logout, user, isAuth }}>
             {children}
         </UserContext.Provider>
     );

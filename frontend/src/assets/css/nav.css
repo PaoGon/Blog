@@ -1,0 +1,49 @@
+nav{
+  height: 8vh;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  background-color: #5e57ee;
+  display: flex;
+  align-items: center;
+  padding: 10px 3rem 10px 3rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.ic {
+  display: flex;
+  margin-right: 2rem;
+  color: #ffffff;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.clk > a {
+  display: flex;
+  cursor: pointer;
+  font-family: "Varela Round", sans-serif;
+  color: #ffffff;
+  width: 10rem;
+  margin-right: 1rem;
+  margin-left: 2rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.nav-title {
+    font-size: 1.3rem;
+    text-decoration: none;
+    color: #ffffff;
+    margin-right: 1rem;
+    font-family: "Varela Round", sans-serif;
+}
+
+.nav-title:hover,
+.ic:hover > div {
+  transition: all 0.3 ease-out;
+  color: #b2b2b2;
+  font-size: 18px;
+}
