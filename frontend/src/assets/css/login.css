@@ -49,17 +49,25 @@
     75% {transform: translateX(-8px);}
 }
 
-.err{
+.err, .succ{
     flex: 0.5;
     width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f85d43;
     margin: 1rem;
     border-radius: 5px;
     color: #ffff;
+    text-align: center;
+}
+
+.err{
+    background-color: #f85d43;
     animation: shake 0.1635s 0s 3;
+}
+
+.succ {
+    background-color: #61beb0;
 }
 
 .log-btn {

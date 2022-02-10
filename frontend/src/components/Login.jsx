@@ -12,13 +12,16 @@ import '../assets/css/input.css';
 
 const Login = () => {
     const { login_user } = useContext(UserContext);
-    //const [redirect, setRedirect] = useState(false);
     const [errMsg, setErrMsg] = useState(false);
     const [data, setData] = useState({
         email: "",
         password: "",
 
     });
+
+    const reset = () => {
+        setErrMsg("");
+    }
 
     const getData = (val) => {
         setData({
@@ -29,49 +32,48 @@ const Login = () => {
     }
     const submitForm = async (e) => {
         e.preventDefault();
-        const res = await login_user(data)
+        const res = await login_user(data);
         if (res.success) {
-            console.log('test1', localStorage.getItem('loginToken'))
+            console.log('test1', localStorage.getItem('loginToken'));
         }
         else {
-            setErrMsg(res.message)
-            console.log(res.message)
+            setErrMsg(res.message);
+            console.log(res.message);
         }
     }
     return (
-        <>
-            <form className='login' onSubmit={e => submitForm(e)}>
-                <div className="log-cont">
-                    <h1 className='title'>Login</h1>
-                    {errMsg ? <div className="err">{errMsg}</div> : ""}
-                    <div className="log-inputs">
-                        {LoginProps.map((val, key) => {
-                            return (
-                                <div className="wrapper" key={key}>
-                                    <input
-                                        type={val.type}
-                                        name={val.name}
-                                        placeholder={val.place_holder}
-                                        size={val.size}
-                                        onChange={getData}
-                                        required
-                                        autoFocus={val.auto}
-                                    />
-                                    <div className="validation">*Required</div>
+        <form className='login' onSubmit={e => submitForm(e)}>
+            <div className="log-cont">
+                <h1 className='title'>Login</h1>
+                {errMsg ? <div className="err">{errMsg}</div> : ""}
+                <div className="log-inputs">
+                    {LoginProps.map((val, key) => {
+                        return (
+                            <div className="wrapper" key={key}>
+                                <input
+                                    type={val.type}
+                                    name={val.name}
+                                    placeholder={val.place_holder}
+                                    size={val.size}
+                                    onChange={getData}
+                                    required
+                                    onClick={() => reset()}
+                                    autoFocus={val.auto}
+                                />
+                                <div className="validation">*Required</div>
 
-                                </div>
-                            );
-                        })}
-                    </div>
-                    <div className="log-btn">
-                        <Button buttonColor='light-blue' buttonSize='btn-mobile' type='submit'>
-                            Login
-                        </Button>
-                    </div>
-
+                            </div>
+                        );
+                    })}
                 </div>
-            </form>
-        </>
+                <div className="log-btn">
+                    <Button buttonColor='light-blue' buttonSize='btn-mobile' type='submit'>
+                        Login
+                    </Button>
+                </div>
+
+            </div>
+        </form>
     )
 }
 export default Login;

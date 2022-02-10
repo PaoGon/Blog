@@ -34,6 +34,32 @@ export const UserContextProvider = ({ children }) => {
         }
     }
 
+    const signup_user = async (data) => {
+        const requestOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        };
+
+        try {
+            const res = await fetch("http://blog.local/api/accounts/signup", requestOptions);
+            const data = await res.json();
+
+            if (data.success === 1) {
+                return data;
+
+            } else {
+                return data;
+            }
+        } catch (err) {
+            return { success: 0, message: 'Server Error!' };
+        }
+
+
+    }
+
     const login_user = async (data) => {
         setWait(true);
 
@@ -46,7 +72,7 @@ export const UserContextProvider = ({ children }) => {
         };
 
         try {
-            const res = await fetch("http://blog.local/api/accounts/login.php", requestOptions)
+            const res = await fetch("http://blog.local/api/accounts/login", requestOptions)
             const data = await res.json()
 
             if (data.success && data.token) {
@@ -81,7 +107,7 @@ export const UserContextProvider = ({ children }) => {
     }, [wait]);
 
     return (
-        <UserContext.Provider value={{ login_user, logout, user, isAuth }}>
+        <UserContext.Provider value={{ login_user, signup_user, logout, user, isAuth }}>
             {children}
         </UserContext.Provider>
     );
