@@ -1,0 +1,98 @@
+:root {
+  --primary: #ffffff;
+}
+
+.btn {
+  padding: 0.3em 0.9em;
+  border-radius: 10px;
+  margin: 0.5rem;
+  outline: none;
+  border: none;
+  font-family: "Varela Round", sans-serif;
+  cursor: pointer;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.btn--primary {
+  background-color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+.btn--outline {
+  background-color: transparent;
+  color: #ffffff;
+  padding: 8px 20px;
+  border: 1px solid var(--primary);
+  transition: all 0.3s ease-out;
+}
+
+.blue {
+  background-color: #4977ad;
+}
+
+.light-blue{
+
+  background-color: #37b9f1;
+}
+
+.green {
+  background-color: #61beb0;
+}
+
+.orange {
+  background-color: #f85d43;
+}
+
+.red {
+  background-color: #bf3a3a;
+}
+
+.gray {
+  background-color: #acacac;
+}
+
+.btn--medium {
+  width: 7rem;
+  font-size: 18px;
+}
+
+.btn--large {
+  padding: 12px 26px;
+  font-size: 20px;
+}
+
+.btn-mobile {
+  border-radius: 15px;
+  text-align: center;
+  width: 80%;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 14px 28px;
+  transition: all 0.3 ease-in-out;
+}
+
+.btn--wide {
+  padding: 12px 64px;
+  font-size: 20px;
+}
+
+.btn--large:hover,
+.btn--medium:hover,
+.btn-mobile:hover {
+  transition: all 0.3 ease-out;
+  background: #ffffff;
+  color: #4977ad;
+}
+
+.btn--wide {
+  transition: all 0.3 ease-out;
+}
+
+.lab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+}

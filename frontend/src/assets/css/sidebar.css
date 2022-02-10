@@ -1,0 +1,249 @@
+.title {
+  font-family: "Varela Round", sans-serif;
+}
+
+.navbar {
+  height: 10vh;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  background-color: #4977ad;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.logs {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  margin-left: 3rem;
+}
+
+.clk > a {
+  display: flex;
+  cursor: pointer;
+  font-family: "Varela Round", sans-serif;
+  color: #ffffff;
+  width: 10rem;
+  margin-right: 1rem;
+  margin-left: 2rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.cont {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex: 2;
+  margin-left: 20px;
+}
+
+.wrap {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+}
+
+.bx {
+  width: 50%;
+  float: right;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.ic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* font-size: 3rem; */
+  margin-right: 2rem;
+  font-weight: bold;
+  color: #ffffff;
+  cursor: pointer;
+  text-decoration: none;
+}
+.nav-icon {
+  font-size: 35px;
+}
+.nav-title {
+  font-size: 20px;
+  text-decoration: none;
+  color: #ffffff;
+}
+.nav-title:hover,
+.ic:hover > div {
+  transition: all 0.3 ease-out;
+  color: #b2b2b2;
+  font-size: 18px;
+}
+
+.xx {
+  border-radius: 50%;
+  font-size: 25px;
+  text-align: center;
+  align-items: center;
+  color: #4977ad;
+  width: 35px;
+  height: 35px;
+  margin-left: 5px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  background-color: #ffffff;
+}
+
+#xx-act {
+  margin-right: 3.5rem;
+}
+
+.xx:hover {
+  transition: all 0.3 ease-out;
+  color: #ffffff;
+  background-color: #4977ad;
+}
+
+.search-box > input {
+  border-radius: 15px;
+  border: none;
+  padding-left: 10px;
+  width: 50%;
+  height: 80%;
+  outline: none;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: "Varela Round", sans-serif;
+  color: #858282;
+  cursor: text;
+}
+
+.search-box ::placeholder {
+  color: #bdbdbd;
+}
+
+.search-box:hover ::placeholder {
+  color: #858282;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border-radius: 20px;
+  height: 100%;
+  width: 50%;
+}
+
+.menu-bars {
+  display: flex;
+  cursor: pointer;
+  margin-right: 2rem;
+  margin-left: 1.5rem;
+  font-size: 2rem;
+  right: 5%;
+  color: #ffffff;
+  float: right;
+}
+
+#title {
+  font-family: "Varela Round", sans-serif;
+}
+
+.nav-menu {
+  background-color: #4977ad;
+  height: 100vh;
+  width: 15rem;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  transition: 850ms;
+}
+
+.nav-menu.active {
+  left: 0;
+  transition: 350ms;
+}
+
+.shape {
+  height: 20%;
+  width: 100%;
+  background-color: #4977ad;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inner {
+  text-align: center;
+  height: 80%;
+  width: 80%;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background-color: #f4f4f4;
+}
+
+.SidebarList {
+  height: auto;
+  width: 100%;
+  margin-top: 35px;
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+}
+
+.SidebarList .row {
+  width: 90%;
+  height: 70px;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.SidebarList .row:hover {
+  cursor: pointer;
+  background-color: #385c87;
+  padding: 0 16px;
+  border-radius: 10px;
+  font-family: "Varela Round", sans-serif;
+  color: #ffffff;
+}
+
+.SidebarList #active {
+  border-radius: 10px;
+  padding: 0 16px;
+  background-color: #ffffff;
+  font-family: "Varela Round", sans-serif;
+  color: #4977ad;
+}
+
+.row #icon {
+  flex: 5%;
+}
+
+.row #title {
+  flex: 70%;
+  font-size: 1.5rem;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+/* @media screen and (max-width: 768px){
+    body{
+        display: none;
+    }
+    
+} */
