@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { IoIosCreate } from 'react-icons/io';
 
 import '../assets/css/nav.css';
 
@@ -9,17 +10,17 @@ const Navbar = () => {
     const { isAuth, logout } = useContext(UserContext);
 
     return (
-        <nav>
+        <nav className="navbar">
             <div className="clk">
                 <NavLink to='/'>Blog</NavLink>
             </div>
 
             {isAuth ?
                 <li className="ic">
+                    <NavLink className="nav-title" to='/create-post'>New Post</NavLink>
                     <a className="nav-title" onClick={() => {
                         logout()
                         window.location.pathname = "/login"
-
                     }} href='#!'>Logout</a>
                 </li>
                 :

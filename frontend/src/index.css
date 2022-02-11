@@ -7,13 +7,13 @@
 html{
     color: black;
     font-family: 'Verela Round', sans-serif;
+    overflow: auto;
 }
 
 body{
     min-height: 100vh;
     /*background-color: #e4e7e9;*/
     background: #f0f0f9;
-    overflow: hidden;
 }
 
 .root .container{

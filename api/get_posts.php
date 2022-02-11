@@ -8,10 +8,6 @@
 
     require __DIR__ . '/config/Database.php';
     require __DIR__ . '/classes/Post.php';
-    //
-
-    //require './config/Database.php';
-    //require './classes/Post.php';
     
     function msg($success,$status,$message,$extra = []){
         return array_merge([

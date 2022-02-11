@@ -15,9 +15,17 @@
         // Get all posts in descending order
         public function getPosts(){
             $query_posts = "
-                SELECT id, title, content
-                FROM posts
-                ORDER BY created_at DESC;
+                SELECT 
+                    name, 
+                    posts.id AS post_id, 
+                    users.id,
+                    title, 
+                    content, 
+                    created_at
+                FROM users
+                INNER JOIN posts
+                    ON posts.user_id = users.id
+                ORDER BY created_at DESC
             ";
             $stmt = $this->db->prepare($query_posts);
             $stmt->execute();

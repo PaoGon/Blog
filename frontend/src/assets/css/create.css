@@ -1,0 +1,11 @@
+.post-head{
+    font-size: 1.5rem;
+}
+.post-c{
+    font-family: "Varela Round", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    
+}

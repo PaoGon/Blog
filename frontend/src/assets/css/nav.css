@@ -1,5 +1,5 @@
-nav{
-  height: 8vh;
+.navbar{
+  height: var(--nav-size);
   width: 100%;
   position: sticky;
   top: 0;

@@ -20,7 +20,6 @@ export const UserContextProvider = ({ children }) => {
             cache: "no-cache"
         };
 
-        console.log(login_token);
 
         if (login_token) {
             const res = await fetch("http://blog.local/api/get_user", requestOptions);
