@@ -1,0 +1,32 @@
+.del-cont{
+    flex: 5;
+    display: flex;
+    flex-direction: row;
+}
+
+.del-ico, .del-msg{
+    display: flex;
+    flex-direction: column;
+}
+
+.del-ico{
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    color: #f85d43;
+    font-size: 8rem;
+}
+
+.del-msg{
+    flex:5;
+    justify-content: center;
+    padding-left: 1.5rem;
+    font-family: "Varela Round", sans-serif;
+}
+
+
+.del-btn{
+    display: flex;
+    justify-content: flex-end;
+    flex:0.5;
+}

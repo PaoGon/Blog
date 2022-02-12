@@ -1,0 +1,35 @@
+.update, .del{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color:rgba(0, 0, 0, 0.06);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.close{
+    position: absolute;
+    right: 20rem;
+    top: 10em;
+
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    cursor: pointer;
+
+    background: #94939bde;
+    color: #ffff ;
+}
+
+.close:hover{
+    background:#ffff; 
+    color:#94939bde;
+}

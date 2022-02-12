@@ -3,13 +3,20 @@ import { FaUserCircle } from 'react-icons/fa';
 import { BsThreeDots } from 'react-icons/bs';
 
 import { UserContext } from '../context/UserContext';
+import { PostContext } from '../context/PostContext';
 import Dropdown from './Dropdown.jsx'
 
+import UpdatePost from './UpdatePost.jsx';
+import DeletePost from './DeletePost.jsx';
 
 
-const Card = ({ id, post_id, name, title, content, created_at }) => {
+
+const Card = ({ id, post_id, name, title, content, created_at, index }) => {
+    const { update, del } = useContext(PostContext);
     const { user } = useContext(UserContext);
     const [open, setOpen] = useState(false);
+
+
     const [isUser, setIsUser] = useState(false);
 
     const get_time = (time) => {
@@ -29,8 +36,11 @@ const Card = ({ id, post_id, name, title, content, created_at }) => {
         }
     });
 
+
     return (
         <div className="cards">
+            {update && <UpdatePost />}
+            {del && <DeletePost />}
             <div className="ico">
                 <FaUserCircle />
             </div>
@@ -40,9 +50,9 @@ const Card = ({ id, post_id, name, title, content, created_at }) => {
                         <p id={post_id} className="user-name" onClick={() => " "}> {name} </p>
                         <p className="date"> {get_time(created_at)}</p>
                     </div>
-                    <div onClick={() => setOpen(!open)}>
+                    <div className="menu" onClick={() => setOpen(!open)}>
                         <BsThreeDots />
-                        {open && <Dropdown isUser={isUser} />}
+                        {open && <Dropdown index={index} isUser={isUser} />}
                     </div>
                 </div>
                 <hr />

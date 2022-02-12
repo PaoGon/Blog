@@ -6,7 +6,7 @@
 }
 
 input {
-    height: 5rem;
+    /*height: 5rem;*/
     width: 80%;
     padding: 0 0.5rem;
 
@@ -15,10 +15,32 @@ input {
     outline: none;
 
     color: #57536a ;
-    font-size: 2rem;
     font-weight: bold;
     font-family: "Varela Round", sans-serif;
 }
+
+.reg-input{
+    height: 2rem;
+    font-size: 1rem;
+}
+
+.log-input{
+    height: 5rem;
+    font-size: 2rem;
+    
+}
+
+
+/*.post-title{*/
+    /*height: 2rem;*/
+    /*font-size: 1rem;*/
+
+/*}*/
+
+/*.post-content{*/
+    /*height: 7rem;*/
+    /*font-size: 1rem;*/
+/*}*/
 
 .validation{
     position: absolute;

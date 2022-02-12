@@ -1,0 +1,32 @@
+textarea{
+    outline: none;
+    resize: none;
+    padding: 1em;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+
+    border-radius: 3px;
+    color: #333333;
+    background:#ececec;
+
+    line-height: 1.4;
+    font-family: "Varela Round", sans-serif;
+}
+
+textarea:focus{
+    cursor: text;
+    background: #fff;
+    border-color:#488bf1;
+}
+
+
+.post-title{
+    width: 30em;
+    height: 4em;
+}
+
+.post-content{
+    width: 30em;
+    height: 10em;
+}
+

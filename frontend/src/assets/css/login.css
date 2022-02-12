@@ -49,9 +49,8 @@
     75% {transform: translateX(-8px);}
 }
 
-.err, .succ{
+.err, .succ, .post-err, .post-succ{
     flex: 0.5;
-    width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,13 +61,32 @@
 }
 
 .err{
-    background-color: #f85d43;
+    width: 50%;
+    background-color: #ff25008f;
     animation: shake 0.1635s 0s 3;
 }
 
 .succ {
+    width: 50%;
     background-color: #61beb0;
+    font-weight: 700;
 }
+
+.post-succ {
+    width: 40%;
+    min-height: 2.5rem;
+    background-color: #18ce09a3;
+    font-weight: 700;
+}
+
+.post-err{
+    background-color: #ff25008f;
+    width: 40%;
+    min-height: 2.5rem;
+    animation: shake 0.1635s 0s 3;
+    font-weight: 700;
+}
+
 
 .log-btn {
   flex: 1;

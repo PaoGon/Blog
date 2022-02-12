@@ -1,5 +1,6 @@
 export const SignupProps = [
     {
+        class: 'reg-input',
         name: 'name',
         place_holder: 'Username',
         type: 'text',
@@ -9,6 +10,7 @@ export const SignupProps = [
     },
 
     {
+        class: 'reg-input',
         name: 'email',
         place_holder: 'Email',
         type: 'email',
@@ -19,6 +21,7 @@ export const SignupProps = [
     },
 
     {
+        class: 'reg-input',
         name: 'password',
         place_holder: 'Password',
         type: 'password',

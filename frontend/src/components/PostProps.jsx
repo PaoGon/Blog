@@ -1,19 +1,19 @@
 export const PostProps = [
     {
+        class: 'post-title',
         name: 'title',
         place_holder: 'Title',
-        type: 'text',
         auto: true,
-        size: 300
+        len: 300
 
     },
 
     {
+        class: 'post-content',
         name: 'content',
         place_holder: 'Content',
-        type: 'text',
         auto: false,
-        size: 1000
+        len: 1000
 
     }
 ]

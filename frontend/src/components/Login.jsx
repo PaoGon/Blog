@@ -33,13 +33,10 @@ const Login = () => {
     const submitForm = async (e) => {
         e.preventDefault();
         const res = await login_user(data);
-        if (res.success) {
-            console.log('test1', localStorage.getItem('loginToken'));
-        }
-        else {
-            setErrMsg(res.message);
-            console.log(res.message);
-        }
+
+        if (res.success == 1) return
+        setErrMsg(res.message);
+
     }
     return (
         <form className='login' onSubmit={e => submitForm(e)}>
@@ -51,6 +48,7 @@ const Login = () => {
                         return (
                             <div className="wrapper" key={key}>
                                 <input
+                                    className={val.class}
                                     type={val.type}
                                     name={val.name}
                                     placeholder={val.place_holder}

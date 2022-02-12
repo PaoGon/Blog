@@ -1,5 +1,6 @@
 export const LoginProps = [
     {
+        class: 'log-input',
         name: 'email',
         place_holder: 'Email',
         type: 'email',
@@ -9,6 +10,7 @@ export const LoginProps = [
     },
 
     {
+        class: 'log-input',
         name: 'password',
         place_holder: 'Password',
         type: 'password',

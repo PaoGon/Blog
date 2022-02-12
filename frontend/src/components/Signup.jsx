@@ -41,7 +41,6 @@ const Signup = () => {
         }
         else {
             setErrMsg(res.message);
-            console.log(res.message);
         }
     }
 
@@ -56,6 +55,7 @@ const Signup = () => {
                         return (
                             <div className="wrapper" key={key}>
                                 <input
+                                    className={val.class}
                                     type={val.type}
                                     name={val.name}
                                     placeholder={val.place_holder}

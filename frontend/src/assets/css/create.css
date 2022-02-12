@@ -1,6 +1,9 @@
 .post-head{
     font-size: 1.5rem;
+    font-family: "Varela Round", sans-serif;
 }
+
+
 .post-c{
     font-family: "Varela Round", sans-serif;
     display: flex;
@@ -8,4 +11,13 @@
     justify-content: space-around;
     height: 100%;
     
+}
+
+.create-btn{
+  flex: 1;
+  padding-left: 2.5rem;
+}
+
+.update-btn{
+  flex: 1;
 }

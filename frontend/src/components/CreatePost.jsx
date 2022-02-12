@@ -1,21 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { UserContext } from '../context/UserContext';
 
 import { PostProps } from './PostProps.jsx'
-import '../assets/css/create.css';
+import { Button } from './Button';
 
+import '../assets/css/create.css';
+import '../assets/css/textarea.css';
 
 
 
 const CreatePost = () => {
+    const { user } = useContext(UserContext);
+
+    const [errMsg, setErrMsg] = useState("");
+    const [sucMsg, setSucMsg] = useState("");
     const [data, setData] = useState({
+        user_id: user.id,
         title: "",
         content: "",
 
     });
 
-    //const reset = () => {
-    //setErrMsg("");
-    //}
+    const reset = () => {
+        setErrMsg("");
+        setSucMsg("");
+    }
 
     const getData = (val) => {
         setData({
@@ -24,9 +33,46 @@ const CreatePost = () => {
         });
 
     }
+
+    const create_post = async () => {
+        const requestOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        };
+
+        try {
+            const res = await fetch("http://blog.local/api/create_post", requestOptions);
+            const data = await res.json();
+
+            if (data.success === 1) {
+                return data;
+
+            } else {
+                return data;
+            }
+        } catch (err) {
+            return { success: 0, message: 'Server Error!' };
+        }
+    }
+
+    const submitForm = async (e) => {
+        e.preventDefault();
+        const res = await create_post();
+        if (res.success) {
+            setSucMsg(res.message);
+        }
+        else {
+            setErrMsg(res.message);
+        }
+    }
     return (
         <div className="home">
-            <div className="cards">
+            {errMsg ? <div className="post-err">{errMsg}</div> : ""}
+            {sucMsg ? <div className="post-succ">{sucMsg}</div> : ""}
+            <form className="create" onSubmit={e => submitForm(e)}>
                 <div className="post-cont">
                     <div className="info">
                         <h1 className="post-head">New Post</h1>
@@ -36,25 +82,27 @@ const CreatePost = () => {
                         {PostProps.map((val, key) => {
                             return (
                                 <div className="wrapper" key={key}>
-                                    <input
-                                        type={val.type}
+                                    <textarea
+                                        className={val.class}
                                         name={val.name}
                                         placeholder={val.place_holder}
-                                        size={val.size}
+                                        maxLength={val.len}
                                         onChange={getData}
-                                        required
-                                        //onClick={() => reset()}
                                         autoFocus={val.auto}
-                                    />
+                                        onClick={() => reset()}
+                                    >
+                                    </textarea>
                                     <div className="validation">*Required</div>
-
                                 </div>
                             );
                         })}
                     </div>
+                    <div className="create-btn">
+                        <Button buttonStyle='btn--outline' type='submit'> Post </Button>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </form>
+        </div >
     );
 }
 
