@@ -32,9 +32,11 @@ export const PostContextProvider = ({ children }) => {
     }
 
     const update_post = async (data) => {
+        const login_token = localStorage.getItem('login_token');
         const requestOptions = {
             method: "PUT",
             headers: {
+                "Authorization": `Bearer ${login_token}`,
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(data),
@@ -57,9 +59,11 @@ export const PostContextProvider = ({ children }) => {
     }
 
     const delete_post = async (data) => {
+        const login_token = localStorage.getItem('login_token');
         const requestOptions = {
             method: "DELETE",
             headers: {
+                "Authorization": `Bearer ${login_token}`,
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(data),

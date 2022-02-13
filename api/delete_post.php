@@ -8,6 +8,7 @@
 
     require __DIR__ . '/config/Database.php';
     require __DIR__ . '/classes/Post.php';
+    require __DIR__ . '/accounts/CheckAuth.php';
 
     function msg($success, $status, $message, $extra = []){
         return array_merge([
@@ -34,19 +35,31 @@
 
     // IF METHOD IS DELETE
     if ($_SERVER["REQUEST_METHOD"] == "DELETE"){
-        $obj->id = $data->id;
-        $obj->user_id = $data->user_id;
+        $headers = apache_request_headers();
+        $check_auth = new CheckAuth($conn, $headers);
+        $auth = $check_auth->isValid();
 
-        try{
-            $obj->deletePost();
+        if($auth['success'] == 1){
+            $obj->id = $data->id;
+            $obj->user_id = $data->user_id;
 
-            http_response_code(201);
-            $returnData = msg(1, 201, 'Post succesfuly deleted');
+            try{
+                $obj->deletePost();
+
+                http_response_code(200);
+                $returnData = msg(1, 200, 'Post succesfuly deleted');
+            }
+            catch (PDOException $e) {
+                http_response_code(500);
+                $returnData = msg(0, 500, $e->getMessage());
+            }
         }
-        catch (PDOException $e) {
-            http_response_code(500);
-            $returnData = msg(0, 500, $e->getMessage());
+        else{
+            http_response_code(401);
+            $returnData = msg(0, 401, 'Authentication Failed');
+            echo json_encode($returnData);
         }
+
 
     }
     // IF METHOD IS NOT DELETE

@@ -35,9 +35,11 @@ const CreatePost = () => {
     }
 
     const create_post = async () => {
+        const login_token = localStorage.getItem('login_token');
         const requestOptions = {
             method: "POST",
             headers: {
+                "Authorization": `Bearer ${login_token}`,
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(data),

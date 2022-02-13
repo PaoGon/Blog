@@ -8,6 +8,7 @@
 
     require __DIR__ . '/config/Database.php';
     require __DIR__ . '/classes/Post.php';
+    require __DIR__ . '/accounts/CheckAuth.php';
     
     function msg($success,$status,$message,$extra = []){
         return array_merge([
@@ -32,15 +33,27 @@
     // IF METHOD IS GET
     if($_SERVER["REQUEST_METHOD"] == "GET"){
         try{
-            if($stmt->rowCount()){
-                $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $headers = apache_request_headers();
+            $check_auth = new CheckAuth($conn, $headers);
+            $auth = $check_auth->isValid();
+            
+            
+            if($auth['success'] == 1){
+                if($stmt->rowCount()){
+                    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                http_response_code(200);
-                echo json_encode($data);
+                    http_response_code(200);
+                    echo json_encode($data);
+                }
+                else{
+                    http_response_code(400);
+                    echo json_encode($rows);
+                }
             }
             else{
-                http_response_code(400);
-                echo json_encode($rows);
+                http_response_code(401);
+                $returnData = msg(0, 401, 'Authentication Failed');
+                echo json_encode($returnData);
             }
         }
         catch(Exception $e){
