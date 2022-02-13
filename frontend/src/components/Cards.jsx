@@ -34,7 +34,7 @@ const Card = ({ id, post_id, name, title, content, created_at, index }) => {
         else {
             setIsUser(false);
         }
-    });
+    }, []);
 
 
     return (

@@ -1,0 +1,68 @@
+.docs{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 0px;
+    font-family: "Varela Round", sans-serif;
+
+    
+}
+
+.docs-cont{
+    width: 50em;
+    background: #ffff;
+    min-height: 100vh;
+    padding: 2rem 1rem 2rem 1rem;
+    
+}
+
+.sub{
+    font-size: 0.813rem;
+    line-height: 2em;
+    color: #736d6d;
+}
+
+.folder-struc, .db{
+    margin-top: 5rem;
+}
+
+h2{
+    font-size: 1.7rem;
+    line-height:2rem;
+}
+p{
+    line-height:2rem;
+    margin-left: 2rem;
+}
+
+pre{
+    padding: 1em ;
+    margin: 2em; 
+    overflow: auto;
+    border-radius: 15px;
+    background:#f0f0f9; 
+}
+
+code{
+background:#f0f0f9; 
+}
+
+img{
+    margin-left: 2rem;
+}
+
+.db-make{
+    margin-top: 2rem;
+}
+
+.inside{
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 5px ;
+    
+}
+
+
+.endpoint{
+    margin-bottom: 2rem;
+}

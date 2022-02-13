@@ -2,12 +2,13 @@
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Headers: access");
     header("Content-Type: application/json; charset=UTF-8");
-    header("Access-Control-Allow-Methods: GET OPTIONS");
+    header("Access-Control-Allow-Methods: GET, OPTIONS");
     header("Access-Control-Max-Age: 3600");
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
     require __DIR__ . '/config/Database.php';
     require __DIR__ . '/classes/Post.php';
+    require __DIR__ . '/accounts/CheckAuth.php';
     
     function msg($success,$status,$message,$extra = []){
         return array_merge([
@@ -36,19 +37,33 @@
 
     if($_SERVER["REQUEST_METHOD"] == "GET"){
         try{
-            if($stmt->rowCount()){
-                $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $headers = apache_request_headers();
+            $check_auth = new CheckAuth($conn, $headers);
+            $auth = $check_auth->isValid();
 
-                http_response_code(200);
-                $returnData = [
-                    'success' => 1,
-                    'message' => 'Success',
-                    'data' => $data
-                ];
+            if($auth['success'] == 1){
+
+
+
+                if($stmt->rowCount()){
+                    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                    http_response_code(200);
+                    $returnData=[
+                        'success' => 1,
+                        'status' => 200,
+                        'message' => $data
+                    ];
+                }
+                else{
+                    http_response_code(400);
+                    $returnData = msg(0,400, 'Post does not exist');
+                }
             }
             else{
-                http_response_code(400);
-                $returnData = msg(0,400, 'Post does not exist');
+                http_response_code(401);
+                $returnData = msg(0, 401, 'Authentication Failed');
+                echo json_encode($returnData);
             }
         }
         catch(PDOException $e){

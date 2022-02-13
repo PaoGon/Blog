@@ -32,20 +32,6 @@
             return $stmt;
         }
 
-        // Get single post
-        public function getSinglePost(){
-            $query_posts = "
-                SELECT id, title, content, created_at
-                FROM posts
-                WHERE user_id=:user_id and id=:id
-            ";
-            $query_stmt = $this->db->prepare($query_posts);
-            $query_stmt->bindValue(':user_id', $this->user_id, PDO::PARAM_INT);
-            $query_stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
-            $query_stmt->execute();
-
-            return $query_stmt;
-        }
 
         // Get all the post of a certain user
         public function getOwnPosts(){

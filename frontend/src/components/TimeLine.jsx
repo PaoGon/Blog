@@ -1,5 +1,6 @@
-import React, { useEffect, useContext } from 'react';
-import { PostContext } from '../context/PostContext';
+import React, { useState, useEffect, useContext } from 'react';
+import { PostContext } from '../context/PostContext.jsx';
+import { UserContext } from '../context/UserContext.jsx';
 
 import Card from './Cards.jsx';
 
@@ -7,24 +8,29 @@ import Card from './Cards.jsx';
 import '../assets/css/home.css';
 
 const Home = () => {
-    const { trig, get_posts, posts } = useContext(PostContext);
+    const { user } = useContext(UserContext);
+    const { ownPosts, get_own_posts } = useContext(PostContext);
+
 
 
 
     useEffect(() => {
-        get_posts()
-    }, [trig])
+        async function asyncCall() {
+            await get_own_posts(user.id);
+        }
+        asyncCall();
+    }, [])
 
     return (
 
         <div className="home">
-            {posts.map((val, key) => {
+            {ownPosts.map((val, key) => {
                 return (
                     <Card
                         index={key}
-                        id={val.id}
+                        id={user.id}
                         post_id={val.post_id}
-                        name={val.name}
+                        name={user.name}
                         title={val.title}
                         content={val.content}
                         created_at={val.created_at}
@@ -32,7 +38,6 @@ const Home = () => {
                     />
                 )
             })}
-
         </div>
     )
 }

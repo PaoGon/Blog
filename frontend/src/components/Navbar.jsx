@@ -12,12 +12,14 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="clk">
-                <NavLink to='/'>Blog</NavLink>
+                <NavLink className='hd' to='/home'>Blog</NavLink>
+                <NavLink className='nav-title' to='/'>Documentation</NavLink>
             </div>
 
             {isAuth ?
                 <li className="ic">
                     <NavLink className="nav-title" to='/create-post'>New Post</NavLink>
+                    <NavLink className="nav-title" to='/timeline'>Timeline</NavLink>
                     <a className="nav-title" onClick={() => {
                         logout()
                         window.location.pathname = "/login"

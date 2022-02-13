@@ -8,6 +8,7 @@ import Home from './components/Home';
 import Docu from './components/Docu.jsx';
 import Signup from './components/Signup.jsx';
 import CreatePost from './components/CreatePost.jsx';
+import TimeLine from './components/TimeLine.jsx';
 
 function App() {
     const { user } = useContext(UserContext);
@@ -17,15 +18,16 @@ function App() {
             <BrowserRouter>
                 <Navbar />
                 <Routes>
+                    <Route exact path="/" element={<Docu />} />
                     {user &&
                         <>
                             <Route exact path="/home" element={<Home />} />
                             <Route exact path="/create-post" element={<CreatePost />} />
+                            <Route exact path="/timeline" element={<TimeLine />} />
                         </>
                     }
                     {!user && (
                         <>
-                            <Route exact path="/" element={<Docu />} />
                             <Route exact path="/login" element={<Login />} />
                             <Route exact path="/signup" element={<Signup />} />
                         </>

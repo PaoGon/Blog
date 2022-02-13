@@ -34,7 +34,7 @@ const Login = () => {
         e.preventDefault();
         const res = await login_user(data);
 
-        if (res.success == 1) return
+        if (res.success === 1) return
         setErrMsg(res.message);
 
     }

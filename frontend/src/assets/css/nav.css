@@ -20,15 +20,25 @@
   text-decoration: none;
 }
 
+
+.clk{
+    display: flex;
+    flex-direction: row;
+    font-family: "Varela Round", sans-serif;
+    
+}
+
+.hd{
+  font-size: 1.8rem;
+}
+
 .clk > a {
   display: flex;
+  align-items: center;
   cursor: pointer;
-  font-family: "Varela Round", sans-serif;
   color: #ffffff;
-  width: 10rem;
   margin-right: 1rem;
   margin-left: 2rem;
-  font-size: 1.8rem;
   font-weight: bold;
   text-decoration: none;
 }
