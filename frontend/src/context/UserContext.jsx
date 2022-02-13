@@ -21,7 +21,7 @@ export const UserContextProvider = ({ children }) => {
         };
 
         if (login_token) {
-            const res = await fetch(" https://frozen-dusk-05665.herokuapp.com/accounts/get_user.php ", requestOptions);
+            const res = await fetch("https://corsanywhere.herokuapp.com/https://frozen-dusk-05665.herokuapp.com/get_user.php", requestOptions);
             const data = await res.json();
             if (data.success && data.user) {
                 setUser(data.user);
@@ -41,7 +41,7 @@ export const UserContextProvider = ({ children }) => {
             body: JSON.stringify(data),
         };
         try {
-            const res = await fetch(" https://frozen-dusk-05665.herokuapp.com/accounts/signup.php ", requestOptions);
+            const res = await fetch("https://corsanywhere.herokuapp.com/https://frozen-dusk-05665.herokuapp.com/accounts/signup.php", requestOptions);
             const data = await res.json();
 
             if (data.success === 1) {
@@ -69,7 +69,7 @@ export const UserContextProvider = ({ children }) => {
         };
 
         try {
-            const res = await fetch(" https://frozen-dusk-05665.herokuapp.com/accounts/login.php ", requestOptions)
+            const res = await fetch("https://corsanywhere.herokuapp.com/https://frozen-dusk-05665.herokuapp.com/accounts/login.php", requestOptions)
             const data = await res.json()
 
             if (data.success && data.token) {
