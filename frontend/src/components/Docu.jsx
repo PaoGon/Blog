@@ -634,7 +634,7 @@ class JwtHandler{
                         </code>
                     </pre>
                     <h1>
-                        <code class="inside">Get all posts</code>
+                        <code className="inside">Get all posts</code>
                     </h1>
                     <pre>
                         <code>
@@ -715,7 +715,7 @@ class JwtHandler{
                         </code>
 
                     </pre>
-                    <h1><code class="inside">Get owned posts endpoint</code></h1>
+                    <h1><code className="inside">Get owned posts endpoint</code></h1>
                     <pre>
                         <code>
                             {
@@ -805,7 +805,7 @@ class JwtHandler{
                             }
                         </code>
                     </pre>
-                    <h1><code class="inside">Create post enpoint</code></h1>
+                    <h1><code className="inside">Create post enpoint</code></h1>
                     <pre>
                         <code>{`
 <?php
@@ -894,7 +894,7 @@ class JwtHandler{
 ?>
             `}</code>
                     </pre>
-                    <h1><code class="inside">Update post Enpoint</code></h1>
+                    <h1><code className="inside">Update post Enpoint</code></h1>
                     <pre>
                         <code>{`
 <?php
@@ -987,7 +987,7 @@ class JwtHandler{
 ?>
                         `}</code>
                     </pre>
-                    <h1><code class="inside">Delete post Endpoint</code></h1>
+                    <h1><code className="inside">Delete post Endpoint</code></h1>
                     <pre>
                         <code>{
                             `

@@ -44,9 +44,8 @@ const CreatePost = () => {
             },
             body: JSON.stringify(data),
         };
-
         try {
-            const res = await fetch("http://blog.local/api/create_post", requestOptions);
+            const res = await fetch("https://frozen-dusk-05665.herokuapp.com/ /delete_post ", requestOptions);
             const data = await res.json();
 
             if (data.success === 1) {

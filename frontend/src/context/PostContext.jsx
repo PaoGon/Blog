@@ -21,7 +21,7 @@ export const PostContextProvider = ({ children }) => {
                 "Content-Type": "application/json",
             },
         };
-        const res = await fetch(`http://blog.local/api/get_own_posts?user_id=${data}`, requestOptions);
+        const res = await fetch(` https://frozen-dusk-05665.herokuapp.com/get_own_posts.php?user_id=${data} `, requestOptions);
         const data_res = await res.json();
 
         try {
@@ -33,6 +33,7 @@ export const PostContextProvider = ({ children }) => {
             console.log(err);
         }
     }
+
     const get_posts = async () => {
         const login_token = localStorage.getItem('login_token');
         const requestOptions = {
@@ -42,7 +43,7 @@ export const PostContextProvider = ({ children }) => {
                 "Content-Type": "application/json",
             },
         };
-        const res = await fetch("http://blog.local/api/get_posts", requestOptions);
+        const res = await fetch("https://frozen-dusk-05665.herokuapp.com/get_posts", requestOptions);
         const data = await res.json();
 
         try {
@@ -65,7 +66,7 @@ export const PostContextProvider = ({ children }) => {
         };
 
         try {
-            const res = await fetch("http://blog.local/api/update_post", requestOptions);
+            const res = await fetch("https://frozen-dusk-05665.herokuapp.com/update_post", requestOptions);
             const data = await res.json();
 
             if (data.success === 1) {
@@ -90,9 +91,8 @@ export const PostContextProvider = ({ children }) => {
             },
             body: JSON.stringify(data),
         };
-
         try {
-            const res = await fetch("http://blog.local/api/delete_post", requestOptions);
+            const res = await fetch("https://frozen-dusk-05665.herokuapp.com/ /delete_post", requestOptions);
             const data = await res.json();
 
             if (data.success === 1) {

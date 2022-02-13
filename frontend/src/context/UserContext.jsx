@@ -20,9 +20,8 @@ export const UserContextProvider = ({ children }) => {
             cache: "no-cache"
         };
 
-
         if (login_token) {
-            const res = await fetch("http://blog.local/api/get_user", requestOptions);
+            const res = await fetch(" https://frozen-dusk-05665.herokuapp.com/accounts/get_user.php ", requestOptions);
             const data = await res.json();
             if (data.success && data.user) {
                 setUser(data.user);
@@ -41,9 +40,8 @@ export const UserContextProvider = ({ children }) => {
             },
             body: JSON.stringify(data),
         };
-
         try {
-            const res = await fetch("http://blog.local/api/accounts/signup", requestOptions);
+            const res = await fetch(" https://frozen-dusk-05665.herokuapp.com/accounts/signup.php ", requestOptions);
             const data = await res.json();
 
             if (data.success === 1) {
@@ -71,7 +69,7 @@ export const UserContextProvider = ({ children }) => {
         };
 
         try {
-            const res = await fetch("http://blog.local/api/accounts/login", requestOptions)
+            const res = await fetch(" https://frozen-dusk-05665.herokuapp.com/accounts/login.php ", requestOptions)
             const data = await res.json()
 
             if (data.success && data.token) {
