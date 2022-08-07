@@ -58,9 +58,16 @@
                     $obj->user_id = $data->user_id;
                     $obj->title = $data->title;
                     $obj->content = $data->content;
-                    $obj->createPost();
-                    http_response_code(201);
-                    $returnData = msg(1, 201, 'Post succesfuly created');
+                    $result = $obj->createPost();
+                    if($result == 1){
+                        http_response_code(201);
+                        $returnData = msg(1, 201, 'Post succesfuly created');
+                    }
+                    else{
+                        http_response_code(500);
+                        $returnData = msg(0, 500, 'something went wrong');
+                        
+                    }
                 }
                 catch (PDOException $e) {
                     http_response_code(500);

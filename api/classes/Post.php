@@ -61,7 +61,13 @@
             $create_stmt->bindValue(':content', htmlspecialchars(strip_tags($this->content)), PDO::PARAM_STR);
             
             $create_stmt->execute();
-            return $create_stmt;
+
+            if($create_stmt->rowCount() > 0){
+                return 1;
+            }
+            else{
+                return 0;
+            }
         }
 
         // Update post
